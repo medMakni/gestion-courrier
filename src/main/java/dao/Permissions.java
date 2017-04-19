@@ -72,8 +72,8 @@ public static void main(String[] args) {
 	    Folder folderAssociations = session.getRootFolder().createFolder(newFolderProps);
 
 		 List<String> permissions = new ArrayList<String>();
-		    permissions.add("cmis:all");
-		    String principal = "test";
+		    permissions.add("cmis:read");
+		    String principal = "GROUP_user";
 		    Ace aceIn = session.getObjectFactory().createAce(principal, permissions);
 		    System.out.println("is direct ? "+aceIn.isDirect());
 		    List<Ace> aceListIn = new ArrayList<Ace>();
@@ -101,8 +101,8 @@ public static void main(String[] args) {
 	    }
 
 	    List<String> permissions2 = new ArrayList<String>();
-	    permissions.add("cmis:all");
-	    String principal2 = "test";
+	    permissions.add("cmis:read");
+	    String principal2 = "GROUP_user";
 	    Ace aceIn2 = session.getObjectFactory().createAce(principal2, permissions2);
 	    System.out.println("is direct ? "+aceIn2.isDirect());
 	    List<Ace> aceListIn2 = new ArrayList<Ace>();
