@@ -2,9 +2,12 @@ package biz.picosoft.daoImpl;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import biz.picosoft.entity.Contacte;
 
 public interface ContacteDao {
+
 void inserteContacte(Contacte contacte);
 void updateContacte(Contacte contacte);
 void deleteContacte(Contacte contacte);

@@ -2,18 +2,23 @@ package biz.picosoft.daoImpl;
 
 import java.util.List;
 
-import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import biz.picosoft.entity.Contacte;
-
+@Transactional(readOnly=false)
 public class ContacteDaoImpl implements ContacteDao{
 	HibernateTemplate template;  
 	public void setTemplate(HibernateTemplate template) {  
 	    this.template = template;  
-	}  
+	} 
+ 
+ 
 	public void inserteContacte(Contacte contacte) {
 		// TODO Auto-generated method stub
 		template.save(contacte);
+	 
 	}
 
 	public void updateContacte(Contacte contacte) {
