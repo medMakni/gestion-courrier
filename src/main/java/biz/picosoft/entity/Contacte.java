@@ -17,7 +17,7 @@ public class Contacte  implements Serializable {
  @Id
  @GeneratedValue(strategy=GenerationType.IDENTITY)
  @Column(name = "idContact")
-long idContact;
+int idContact;
  @Column(name = "nom")
 String nom;
  @Column(name = "mail")
@@ -26,6 +26,10 @@ String mail;
 String téléphone;
  @Column(name = "adresse")
 String adresse;
+
+public Contacte() {
+	super();
+}
 
 public Contacte(  String nom, String mail, String téléphone, String adresse) {
 	super();
@@ -40,6 +44,10 @@ public long getIdContact() {
 	return idContact;
 }
  
+
+public void setIdContact(int idContact) {
+	this.idContact = idContact;
+}
 
 public String getNom() {
 	return nom;
