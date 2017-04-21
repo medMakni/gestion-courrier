@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 public interface GenericDao<T>{
@@ -7,5 +8,5 @@ public interface GenericDao<T>{
 	void update(T t);
     void delete(T t);
     public T findById(Class<T> clazz,String id);
-    public List<T>findAll(Class<T> clazz);
+    public List<T>findAll();
 }

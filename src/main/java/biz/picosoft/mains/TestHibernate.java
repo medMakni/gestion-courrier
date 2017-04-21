@@ -11,13 +11,12 @@ public class TestHibernate {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-Contacte contacte=new Contacte("fatma", "test2",  "test",  "test");
+		Contacte contacte = new Contacte("fatma", "test2", "test", "test");
 
-ApplicationContext context =
-new ClassPathXmlApplicationContext("applicationContext.xml");
- contacte.setIdContact (4);
-ContacteDaoImpl contacteDaoImpl=(ContacteDaoImpl) context.getBean("d");
- contacteDaoImpl.deleteContacte(contacte) ;
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		contacte.setIdContact(4);
+		ContacteDaoImpl contacteDaoImpl = (ContacteDaoImpl) context.getBean("d");
+		contacteDaoImpl.insert(contacte);
 
 	}
 

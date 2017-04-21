@@ -2,16 +2,31 @@ package biz.picosoft.entity;
 
 import java.util.Arrays;
 
-public class Courrier {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
+public class Courrier 
+{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idCourrier")
+long idCourrier;
+	@Column(name = "idSource")
 long idSource;
+	@Column(name = "idDépartement")
 long idDépartement;
-long idContct;
+	@Column(name = "idContct")
+long idContact;
+	
 long[] listePiéceJointe;
 public Courrier(long idSource, long idDépartement, long idContct, long[] listePiéceJointe) {
 	super();
 	this.idSource = idSource;
 	this.idDépartement = idDépartement;
-	this.idContct = idContct;
+	this.idContact = idContct;
 	this.listePiéceJointe = listePiéceJointe;
 }
 public long getIdSource() {
@@ -27,10 +42,10 @@ public void setIdDépartement(long idDépartement) {
 	this.idDépartement = idDépartement;
 }
 public long getIdContct() {
-	return idContct;
+	return idContact;
 }
 public void setIdContct(long idContct) {
-	this.idContct = idContct;
+	this.idContact = idContct;
 }
 public long[] getListePiéceJointe() {
 	return listePiéceJointe;
@@ -40,7 +55,7 @@ public void setListePiéceJointe(long[] listePiéceJointe) {
 }
 @Override
 public String toString() {
-	return "Courrier [idSource=" + idSource + ", idDépartement=" + idDépartement + ", idContct=" + idContct
+	return "Courrier [idSource=" + idSource + ", idDépartement=" + idDépartement + ", idContct=" + idContact
 			+ ", listePiéceJointe=" + Arrays.toString(listePiéceJointe) + "]";
 } 
 
