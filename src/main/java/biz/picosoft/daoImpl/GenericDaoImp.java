@@ -8,17 +8,19 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.GenericDao;
-@Transactional(readOnly=false)
-public class GenericDaoImp<T>  implements GenericDao<T> {
+
+@Transactional(readOnly = false)
+public class GenericDaoImp<T> implements GenericDao<T> {
 	HibernateTemplate template;
 
-    protected Class<T> daoType;
-    public GenericDaoImp() {
-        Type t = getClass().getGenericSuperclass();
-        ParameterizedType pt = (ParameterizedType) t;
-        daoType = (Class) pt.getActualTypeArguments()[0];
-    }
-     
+	protected Class<T> daoType;
+
+	public GenericDaoImp() {
+		Type t = getClass().getGenericSuperclass();
+		ParameterizedType pt = (ParameterizedType) t;
+		daoType = (Class) pt.getActualTypeArguments()[0];
+	}
+
 	public HibernateTemplate getTemplate() {
 		return template;
 	}
@@ -30,7 +32,7 @@ public class GenericDaoImp<T>  implements GenericDao<T> {
 	public void insert(T t) {
 		// TODO Auto-generated method stub
 		template.save(t);
-		
+
 	}
 
 	public void update(T t) {
@@ -51,9 +53,6 @@ public class GenericDaoImp<T>  implements GenericDao<T> {
 	public List<T> findAll() {
 		// TODO Auto-generated method stub
 		return template.loadAll(daoType);
-	} 
-	 
+	}
 
-
-	 
 }

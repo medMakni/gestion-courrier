@@ -9,99 +9,95 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
 @Entity
-@Table( name = "Contacte")
-public class Contacte  implements Serializable {
- @Id
- @GeneratedValue(strategy=GenerationType.IDENTITY)
- @Column(name = "idContact")
-int idContact;
- @Column(name = "nom")
-String nom;
- @Column(name = "mail")
-String mail;
- @Column(name = "téléphone")
-String téléphone;
- @Column(name = "adresse")
-String adresse;
+@Table(name = "Contacte")
+public class Contacte implements Serializable {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idContact")
+	int idContact;
+	@Column(name = "nom")
+	String nom;
+	@Column(name = "mail")
+	String mail;
+	@Column(name = "téléphone")
+	String téléphone;
+	@Column(name = "adresse")
+	String adresse;
 
-public Contacte() {
-	super();
-}
+	public Contacte() {
+		super();
+	}
 
-public Contacte(  String nom, String mail, String téléphone, String adresse) {
-	super();
- 
-	this.nom = nom;
-	this.mail = mail;
-	this.téléphone = téléphone;
-	this.adresse = adresse;
-}
+	public Contacte(String nom, String mail, String téléphone, String adresse) {
+		super();
 
-public long getIdContact() {
-	return idContact;
-}
- 
+		this.nom = nom;
+		this.mail = mail;
+		this.téléphone = téléphone;
+		this.adresse = adresse;
+	}
 
-public void setIdContact(int idContact) {
-	this.idContact = idContact;
-}
+	public long getIdContact() {
+		return idContact;
+	}
 
-public String getNom() {
-	return nom;
-}
+	public void setIdContact(int idContact) {
+		this.idContact = idContact;
+	}
 
-public void setNom(String nom) {
-	this.nom = nom;
-}
+	public String getNom() {
+		return nom;
+	}
 
-public String getMail() {
-	return mail;
-}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 
-public void setMail(String mail) {
-	this.mail = mail;
-}
+	public String getMail() {
+		return mail;
+	}
 
-public String getTéléphone() {
-	return téléphone;
-}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 
-public void setTéléphone(String téléphone) {
-	this.téléphone = téléphone;
-}
+	public String getTéléphone() {
+		return téléphone;
+	}
 
-public String getAdresse() {
-	return adresse;
-}
+	public void setTéléphone(String téléphone) {
+		this.téléphone = téléphone;
+	}
 
-public void setAdresse(String adresse) {
-	this.adresse = adresse;
-}
+	public String getAdresse() {
+		return adresse;
+	}
 
-@Override
-public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + (int) (idContact ^ (idContact >>> 32));
-	return result;
-}
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
 
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (idContact ^ (idContact >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contacte other = (Contacte) obj;
+		if (idContact != other.idContact)
+			return false;
 		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Contacte other = (Contacte) obj;
-	if (idContact != other.idContact)
-		return false;
-	return true;
-}
-
+	}
 
 }
