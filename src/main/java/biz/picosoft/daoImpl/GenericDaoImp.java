@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
+import biz.picosoft.entity.Contacte;
 import dao.GenericDao;
 
 @Transactional(readOnly = false)

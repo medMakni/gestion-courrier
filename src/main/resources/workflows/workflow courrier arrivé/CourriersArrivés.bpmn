@@ -7,42 +7,45 @@
     <laneSet id="laneSet_process_pool1">
       <lane id="lane1"></lane>
       <lane id="lane2" name="Secretériat">
-        <flowNodeRef>usertask1</flowNodeRef>
+        <flowNodeRef>créerUnCourrierTask</flowNodeRef>
+        <flowNodeRef>startevent1</flowNodeRef>
       </lane>
       <lane id="lane3" name="Bureau d'ordres">
-        <flowNodeRef>usertask2</flowNodeRef>
         <flowNodeRef>exclusivegateway1</flowNodeRef>
+        <flowNodeRef>validerUnCourrierTask</flowNodeRef>
       </lane>
       <lane id="lane4" name=" chef direction">
-        <flowNodeRef>usertask3</flowNodeRef>
         <flowNodeRef>exclusivegateway2</flowNodeRef>
         <flowNodeRef>endevent2</flowNodeRef>
+        <flowNodeRef>traiterUnCourrierTask</flowNodeRef>
       </lane>
       <lane id="lane5" name="Employé">
-        <flowNodeRef>usertask4</flowNodeRef>
         <flowNodeRef>exclusivegateway3</flowNodeRef>
         <flowNodeRef>endevent3</flowNodeRef>
+        <flowNodeRef>traitterParEmployéTask</flowNodeRef>
       </lane>
     </laneSet>
-    <userTask id="usertask1" name="Création du courrier"></userTask>
-    <userTask id="usertask2" name="Validation du courrier"></userTask>
+    <userTask id="créerUnCourrierTask" name="Créer un  courrier"></userTask>
+    <userTask id="validerUnCourrierTask" name="Valider un  courrier"></userTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
-    <userTask id="usertask3" name="traitement par le chef direction"></userTask>
+    <userTask id="traiterUnCourrierTask" name="traiter un courrier du  département"></userTask>
     <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
-    <userTask id="usertask4" name="traitement par employé"></userTask>
-    <sequenceFlow id="flow1" sourceRef="usertask1" targetRef="usertask2"></sequenceFlow>
-    <sequenceFlow id="flow2" sourceRef="usertask2" targetRef="exclusivegateway1"></sequenceFlow>
-    <sequenceFlow id="flow4" name="oui" sourceRef="exclusivegateway1" targetRef="usertask3"></sequenceFlow>
-    <sequenceFlow id="flow5" sourceRef="usertask3" targetRef="exclusivegateway2"></sequenceFlow>
-    <sequenceFlow id="flow6" name="affecter une tâche" sourceRef="exclusivegateway2" targetRef="usertask4"></sequenceFlow>
+    <userTask id="traitterParEmployéTask" name="traiter un courrier"></userTask>
+    <sequenceFlow id="flow1" sourceRef="créerUnCourrierTask" targetRef="validerUnCourrierTask"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="validerUnCourrierTask" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow4" name="oui" sourceRef="exclusivegateway1" targetRef="traiterUnCourrierTask"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="traiterUnCourrierTask" targetRef="exclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="flow6" name="affecter une tâche" sourceRef="exclusivegateway2" targetRef="traitterParEmployéTask"></sequenceFlow>
     <endEvent id="endevent2" name="End"></endEvent>
     <sequenceFlow id="flow7" sourceRef="exclusivegateway2" targetRef="endevent2"></sequenceFlow>
     <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway"></exclusiveGateway>
     <endEvent id="endevent3" name="End"></endEvent>
-    <sequenceFlow id="flow10" sourceRef="usertask4" targetRef="exclusivegateway3"></sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="traitterParEmployéTask" targetRef="exclusivegateway3"></sequenceFlow>
     <sequenceFlow id="flow11" name="fin du traitement " sourceRef="exclusivegateway3" targetRef="endevent3"></sequenceFlow>
-    <sequenceFlow id="flow12" name="réaffecter  la tâche" sourceRef="exclusivegateway3" targetRef="usertask4"></sequenceFlow>
-    <sequenceFlow id="flow16" name="non" sourceRef="exclusivegateway1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow12" name="réaffecter  la tâche" sourceRef="exclusivegateway3" targetRef="traitterParEmployéTask"></sequenceFlow>
+    <sequenceFlow id="flow16" name="non" sourceRef="exclusivegateway1" targetRef="créerUnCourrierTask"></sequenceFlow>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <sequenceFlow id="flow17" sourceRef="startevent1" targetRef="créerUnCourrierTask"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
     <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
@@ -64,22 +67,22 @@
       <bpmndi:BPMNShape bpmnElement="lane5" id="BPMNShape_lane5">
         <omgdc:Bounds height="191.0" width="631.0" x="100.0" y="895.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+      <bpmndi:BPMNShape bpmnElement="créerUnCourrierTask" id="BPMNShape_créerUnCourrierTask">
         <omgdc:Bounds height="76.0" width="105.0" x="190.0" y="360.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+      <bpmndi:BPMNShape bpmnElement="validerUnCourrierTask" id="BPMNShape_validerUnCourrierTask">
         <omgdc:Bounds height="71.0" width="105.0" x="190.0" y="540.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
         <omgdc:Bounds height="40.0" width="40.0" x="222.0" y="640.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+      <bpmndi:BPMNShape bpmnElement="traiterUnCourrierTask" id="BPMNShape_traiterUnCourrierTask">
         <omgdc:Bounds height="81.0" width="105.0" x="190.0" y="730.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
         <omgdc:Bounds height="40.0" width="40.0" x="222.0" y="840.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+      <bpmndi:BPMNShape bpmnElement="traitterParEmployéTask" id="BPMNShape_traitterParEmployéTask">
         <omgdc:Bounds height="61.0" width="105.0" x="190.0" y="910.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent2" id="BPMNShape_endevent2">
@@ -90,6 +93,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
         <omgdc:Bounds height="35.0" width="35.0" x="225.0" y="1050.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="225.0" y="300.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="242.0" y="436.0"></omgdi:waypoint>
@@ -103,7 +109,7 @@
         <omgdi:waypoint x="242.0" y="680.0"></omgdi:waypoint>
         <omgdi:waypoint x="242.0" y="730.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="242.0" y="680.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="14.0" x="242.0" y="680.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
@@ -114,7 +120,7 @@
         <omgdi:waypoint x="242.0" y="880.0"></omgdi:waypoint>
         <omgdi:waypoint x="242.0" y="910.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="242.0" y="880.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="90.0" x="242.0" y="880.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
@@ -129,7 +135,7 @@
         <omgdi:waypoint x="242.0" y="1030.0"></omgdi:waypoint>
         <omgdi:waypoint x="242.0" y="1050.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="242.0" y="1030.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="80.0" x="242.0" y="1030.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
@@ -139,7 +145,7 @@
         <omgdi:waypoint x="356.0" y="945.0"></omgdi:waypoint>
         <omgdi:waypoint x="295.0" y="940.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="291.0" y="997.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="93.0" x="291.0" y="997.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
@@ -150,8 +156,12 @@
         <omgdi:waypoint x="357.0" y="392.0"></omgdi:waypoint>
         <omgdi:waypoint x="295.0" y="398.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="340.0" y="647.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="18.0" x="340.0" y="647.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="242.0" y="335.0"></omgdi:waypoint>
+        <omgdi:waypoint x="242.0" y="360.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
