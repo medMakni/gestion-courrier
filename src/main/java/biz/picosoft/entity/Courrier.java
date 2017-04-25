@@ -1,5 +1,6 @@
 package biz.picosoft.entity;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import javax.persistence.Column;
@@ -9,7 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Courrier {
+public class Courrier implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idCourrier")
@@ -18,7 +23,7 @@ public class Courrier {
 	long idSource;
 	@Column(name = "idDépartement")
 	long idDépartement;
-	@Column(name = "idContct")
+	@Column(name = "idContact")
 	long idContact;
 
 	long[] listePiéceJointe;
@@ -67,6 +72,28 @@ public class Courrier {
 	public String toString() {
 		return "Courrier [idSource=" + idSource + ", idDépartement=" + idDépartement + ", idContct=" + idContact
 				+ ", listePiéceJointe=" + Arrays.toString(listePiéceJointe) + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (idCourrier ^ (idCourrier >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Courrier other = (Courrier) obj;
+		if (idCourrier != other.idCourrier)
+			return false;
+		return true;
 	}
 
 }

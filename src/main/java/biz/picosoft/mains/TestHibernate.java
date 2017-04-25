@@ -19,14 +19,17 @@ public class TestHibernate {
 		ContacteDaoImpl contacteDaoImpl = (ContacteDaoImpl) context.getBean("d");
 		//contacteDaoImpl.insert(contacte);
 		
-	 	List<Contacte> lst =contacteDaoImpl.findAll();
+	List<Contacte> lst =contacteDaoImpl.findAll();
 		for (Contacte contacte2 : lst) {
 			System.err.println(contacte2.getIdContact());
-				contacteDaoImpl.delete(contacte2);
+			contacte2.setAdresse("222222222222666666666");
+			contacteDaoImpl.update(contacte2);
+				//contacteDaoImpl.delete(contacte2);
 		}
 		
  
-	 
+	 contacteDaoImpl.insert(contacte);
+	 System.out.println(contacteDaoImpl.getDaoType()  );
 	
 	}
 

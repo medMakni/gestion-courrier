@@ -4,15 +4,18 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import org.springframework.orm.hibernate5.HibernateTemplate;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.transaction.annotation.Transactional;
 
-import biz.picosoft.entity.Contacte;
 import dao.GenericDao;
 
 @Transactional(readOnly = false)
 public class GenericDaoImp<T> implements GenericDao<T> {
-	HibernateTemplate template;
+	@PersistenceContext
+	private EntityManager em;
 
 	protected Class<T> daoType;
 
@@ -22,38 +25,48 @@ public class GenericDaoImp<T> implements GenericDao<T> {
 		daoType = (Class) pt.getActualTypeArguments()[0];
 	}
 
-	public HibernateTemplate getTemplate() {
-		return template;
+	public EntityManager getEm() {
+		return em;
 	}
 
-	public void setTemplate(HibernateTemplate template) {
-		this.template = template;
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
+
+	public Class<T> getDaoType() {
+		return daoType;
+	}
+
+	public void setDaoType(Class<T> daoType) {
+		this.daoType = daoType;
 	}
 
 	public void insert(T t) {
 		// TODO Auto-generated method stub
-		template.save(t);
+		em.persist(t);
 
 	}
 
 	public void update(T t) {
 		// TODO Auto-generated method stub
-		template.update(t);
+		em.merge(t);
 	}
 
 	public void delete(T t) {
 		// TODO Auto-generated method stub
-		template.delete(t);
+		Object managed = em.merge(t);
+		em.remove(managed);
 	}
 
 	public T findById(Class<T> t, String id) {
 		// TODO Auto-generated method stub
-		return template.get(t, id);
+		return em.find(daoType, id);
 	}
 
 	public List<T> findAll() {
 		// TODO Auto-generated method stub
-		return template.loadAll(daoType);
+		Query query = em.createQuery("SELECT e FROM " + daoType.getName() + " e");
+		return (List<T>) query.getResultList();
 	}
 
 }
