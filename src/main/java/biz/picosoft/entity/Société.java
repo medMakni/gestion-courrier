@@ -1,12 +1,15 @@
 package biz.picosoft.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Société implements Serializable {
@@ -26,8 +29,7 @@ public class Société implements Serializable {
 	String télèphone;
 	@Column(name = "adress")
 	String adress;
-
-	public Société(String nom, String email, String télèphone, String adress) {
+	 public Société(String nom, String email, String télèphone, String adress) {
 		super();
 		this.nom = nom;
 		this.email = email;
@@ -35,9 +37,13 @@ public class Société implements Serializable {
 		this.adress = adress;
 	}
 
+	 
+
 	public Société() {
 		super();
 	}
+
+
 
 	public int getIdSociété() {
 		return idSociété;
@@ -86,6 +92,8 @@ public class Société implements Serializable {
 		result = prime * result + idSociété;
 		return result;
 	}
+
+ 
 
 	@Override
 	public boolean equals(Object obj) {

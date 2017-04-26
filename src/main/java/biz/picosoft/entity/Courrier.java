@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Courrier implements Serializable {
@@ -23,22 +24,29 @@ public class Courrier implements Serializable {
 	long idSource;
 	@Column(name = "idDépartement")
 	long idDépartement;
-	@Column(name = "idContact")
-	long idContact;
+	@OneToOne
+	private Contacte contacte;
+	// long[] listePiéceJointe;
 
-	long[] listePiéceJointe;
-
-	public Courrier(long idSource, long idDépartement, long idContct, long[] listePiéceJointe) {
-		super();
-		this.idSource = idSource;
-		this.idDépartement = idDépartement;
-		this.idContact = idContct;
-		this.listePiéceJointe = listePiéceJointe;
-	}
+	/*
+	 * public Courrier(long idSource, long idDépartement, long idContct, long[]
+	 * listePiéceJointe) { super(); this.idSource = idSource; this.idDépartement
+	 * = idDépartement; this.idContact = idContct; this.listePiéceJointe =
+	 * listePiéceJointe; }
+	 */
 
 	public long getIdSource() {
 		return idSource;
 	}
+
+	public Courrier(long idSource, long idDépartement, Contacte contacte) {
+		super();
+		this.idSource = idSource;
+		this.idDépartement = idDépartement;
+		this.contacte = contacte;
+	}
+
+	 
 
 	public void setIdSource(long idSource) {
 		this.idSource = idSource;
@@ -50,28 +58,6 @@ public class Courrier implements Serializable {
 
 	public void setIdDépartement(long idDépartement) {
 		this.idDépartement = idDépartement;
-	}
-
-	public long getIdContct() {
-		return idContact;
-	}
-
-	public void setIdContct(long idContct) {
-		this.idContact = idContct;
-	}
-
-	public long[] getListePiéceJointe() {
-		return listePiéceJointe;
-	}
-
-	public void setListePiéceJointe(long[] listePiéceJointe) {
-		this.listePiéceJointe = listePiéceJointe;
-	}
-
-	@Override
-	public String toString() {
-		return "Courrier [idSource=" + idSource + ", idDépartement=" + idDépartement + ", idContct=" + idContact
-				+ ", listePiéceJointe=" + Arrays.toString(listePiéceJointe) + "]";
 	}
 
 	@Override
@@ -94,6 +80,12 @@ public class Courrier implements Serializable {
 		if (idCourrier != other.idCourrier)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Courrier [idCourrier=" + idCourrier + ", idSource=" + idSource + ", idDépartement=" + idDépartement
+				+ "]";
 	}
 
 }

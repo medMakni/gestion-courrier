@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,12 +29,13 @@ public class Contacte implements Serializable {
 	String téléphone;
 	@Column(name = "adresse")
 	String adresse;
-
+	@ManyToOne
+	   private Société société;
 	public Contacte() {
 		super();
 	}
 
-	public Contacte(String nom, String mail, String téléphone, String adresse) {
+	/*public Contacte(String nom, String mail, String téléphone, String adresse) {
 		super();
 
 		this.nom = nom;
@@ -41,9 +43,21 @@ public class Contacte implements Serializable {
 		this.téléphone = téléphone;
 		this.adresse = adresse;
 	}
-
+*/
+	
 	public long getIdContact() {
 		return idContact;
+	}
+
+	 
+
+	public Contacte(String nom, String mail, String téléphone, String adresse, Société société) {
+		super();
+		this.nom = nom;
+		this.mail = mail;
+		this.téléphone = téléphone;
+		this.adresse = adresse;
+		this.société = société;
 	}
 
 	public void setIdContact(int idContact) {
